@@ -2,13 +2,11 @@ const { ProductDaoMongoDb } = require('./productDaoMongoDb');
 
 class ProductDaoFactory {
     create(persistenceType) {
-        switch(persistenceType){
-            case "mongoDb": return ProductDaoMongoDb.getConnection();
-            case "memoria": return new ProductDaoMemory;
-            case "file": return new ProductDaoFile;
-            case "firebase": return new ProductDaoFirebase;
-            //other
-        }
+        if(persistenceType === "mongoDb") return new ProductDaoMongoDb();
+        if(persistenceType === "memory") return new ProductDaoMemory;
+        if(persistenceType === "file") return new ProductDaoFile;
+        if(persistenceType === "firebase") return new ProductDaoFirebase;
+        //other
     }
 }
 

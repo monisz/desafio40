@@ -1,15 +1,12 @@
-/* const { ProductDaoFactory } = require("./productDaoFactory"); */
-const { ProductDaoMongoDb } = require('./productDaoMongoDb')
+const { ProductDaoFactory } = require("./productDaoFactory");
 
-/* const daoFactory = new ProductDaoFactory(); */
+const daoFactory = new ProductDaoFactory();
 
 //Para probar con mongo
-const persistenceType = "mondoDb";
-
+const persistenceType = "mongoDb";
 class ProductService {
     constructor() {
-        /* this.dao = daoFactory.create(persistenceType); */
-        this.dao = new ProductDaoMongoDb();
+        this.dao = daoFactory.create(persistenceType);
     }
 
     //Para agregar un producto
@@ -31,8 +28,8 @@ class ProductService {
         return productFinded;
     }
 
-    getListProducts () {
-        const allProducts = this.dao.getProducts();
+    async getListProducts () {
+        const allProducts = await this.dao.getProducts();
         return allProducts; 
     }
 
