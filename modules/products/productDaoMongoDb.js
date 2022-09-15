@@ -1,27 +1,22 @@
-const { ClientMongoDb, mongooseConnection } = require('../../dataBase/clientMongoDb');
+const { ClientMongoDb } = require('../../dataBase/clientMongoDb');
 const { productSchema } = require('../../dataBase/productSchema');
 const { Product } = require('./product');
+const { Database } = require('../../dataBase/connectionDatabase');
 
-let connection = null;
-
+const connect = Database.getConnection(); 
 class ProductDaoMongoDb {
     constructor() {
-        this.clientMongoDb = new ClientMongoDb(productSchema);
+        this.clientMongoDb = new ClientMongoDb(productSchema, connect);
     }
-
-    /* static getConnection() { */
-    /*     if (!connection) connection = new ProductDaoMongoDb(); */
-    /*     return connection; */
-    /* } */
 
     async saveProduct(product) {
         const dto = await product.toDto();
-        this.clientMongoDb.save(dto);
+        return this.clientMongoDb.save(dto);
     }
 
     async updateById(id, product) {
         const dto = await product.toDto();
-        this.clientMongoDb.replaceById(id, dto);
+        return this.clientMongoDb.replaceById(id, dto);
     }
 
     async getProductById(id) {

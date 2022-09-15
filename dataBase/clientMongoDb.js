@@ -1,15 +1,8 @@
-/* const { Database } = require('./connectionDatabase'); */
-const mongoose = require('mongoose');
-/* const { ProductDaoMongoDb } = require('../modules/products/productDaoMongoDb'); */
 const logger = require('../utils/loggers/winston');
-
-mongoose.connect(process.env.MONGO_DB)
-/* const mongooseConnection = mongoose.connect(process.env.MONGO_DB); */
-/* ProductDaoMongoDb.getConnection(); */
 logger.info("conectados a mongo");
-
 class ClientMongoDb {
-    constructor (collection) {
+    constructor (collection, connect) {
+        this.connection = connect;
         this.collection = collection;
         this.id = 1;
     }    
