@@ -1,41 +1,37 @@
-const { ProductDaoFactory } = require("./productDaoFactory");
+const { ProductsRepository } = require("./productRepository");
 
-const daoFactory = new ProductDaoFactory();
-
-//Para probar con mongo
-const persistenceType = "mongoDb";
 class ProductService {
     constructor() {
-        this.dao = daoFactory.create(persistenceType);
+        this.dao = new ProductsRepository;
     }
 
     //Para agregar un producto
     addProductToList (newProduct) {
         newProduct.timestamp = Date.now();
-        const newId = this.dao.saveProduct(newProduct);
+        const newId = this.dao.addProductToList(newProduct);
         return newId;
     }
 
     //Recibe y actualiza un producto por id
     replaceProduct (id, newData) {
-        const updatedProduct = this.dao.updateById(id, newData);
+        const updatedProduct = this.dao.replaceProduct(id, newData);
         return updatedProduct;
     }
 
     //Para obtener un producto según su id
     async getProduct (id) {
-        const productFinded = await this.dao.getProductById(id);
+        const productFinded = await this.dao.getProduct(id);
         return productFinded;
     }
 
     async getListProducts () {
-        const allProducts = await this.dao.getProducts();
+        const allProducts = await this.dao.getListProducts();
         return allProducts; 
     }
 
     //Para borrar un producto según el id
     deleteProduct (id) {
-        const result = this.dao.deleteProductById(id);
+        const result = this.dao.deleteProduct(id);
         return result;
     }
 }

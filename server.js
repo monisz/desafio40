@@ -6,11 +6,11 @@ const { Server: SocketServer } = require('socket.io');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('./modules/users/utils/passport');
-const minimist = require('minimist');
 const numCPUs = require('os').cpus().length;
 const cluster = require('cluster');
 const compression = require('compression');
 const logger = require('./utils/loggers/winston');
+const argsparse = require('./utils/argsparse');
 
 const apiRoutes = require('./src/routes/index');
 
@@ -62,20 +62,9 @@ app.use((req, res, next) => {
     next();
 });
 
-const args = process.argv.slice(2);
-const argsparse = minimist(args, {
-    default: {
-        port: 8080,
-        mode: 'fork',
-    },
-    alias: {
-        p: 'port',
-        m: 'mode',
-    }
-});
-
 const port = process.env.PORT || argsparse.port;
-logger.info(`admin en server ${process.env.ADMIN}`)
+
+logger.info(`en server admin: ${process.env.ADMIN}, persistenceType: ${argsparse.persistenceType}`);
 
 //Ruta info
 app.get('/info', (req, res) => {

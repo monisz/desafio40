@@ -1,11 +1,13 @@
 # Desafio3B
-DESAFIO CLASE 38 BACKEND - CODERHOUSE
+DESAFIO CLASE 40 BACKEND - CODERHOUSE
 
 (Español)
 La aplicación puede iniciar con node o nodemon server
 parámetros opcionales por línea de comando:
-- mode: cluster, por default fork
-- port: por default 8080
+- mode (-m): cluster, por default fork
+- port (-p): por default 8080
+- persistenceType (-pt): opciones: mongoDb/memory/file/firebase 
+                         por default mongoDb
 
 Variables de entorno:
 para Windows: >set VARIABLE=valor
@@ -17,8 +19,10 @@ para Windows: >set VARIABLE=valor
 (English)
 The application can start with node or nodemon server
 optional parameters per command line:
-- mode: cluster, default fork
-- port: default 8080
+- mode (-m): cluster, default fork
+- port (-p) : default 8080
+- persistenceType (-pt): options: mongoDb/memory/file/firebase 
+                         default mondoDb
 
 Environment Variables:
 for Windows: >set VARIABLE=value
