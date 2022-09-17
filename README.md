@@ -6,7 +6,7 @@ La aplicación puede iniciar con node o nodemon server
 parámetros opcionales por línea de comando:
 - mode (-m): cluster, por default fork
 - port (-p): por default 8080
-- persistenceType (-pt): opciones: mongoDb/memory/file/firebase 
+- persistenceType (-t): opciones: mongoDb/memory/file/firebase 
                          por default mongoDb
 
 Variables de entorno:
@@ -21,7 +21,7 @@ The application can start with node or nodemon server
 optional parameters per command line:
 - mode (-m): cluster, default fork
 - port (-p) : default 8080
-- persistenceType (-pt): options: mongoDb/memory/file/firebase 
+- persistenceType (-t): options: mongoDb/memory/file/firebase 
                          default mondoDb
 
 Environment Variables:
